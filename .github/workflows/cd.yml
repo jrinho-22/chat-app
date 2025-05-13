@@ -21,8 +21,8 @@ jobs:
       - name: Heroku Login
         run: |
           heroku login -i
-          login jrinho22@gmail.com
-          Password HRKU-91a2713f-17ce-409f-8085-7c6f3788acb9
+          jrinho22@gmail.com
+          HRKU-91a2713f-17ce-409f-8085-7c6f3788acb9
       - name: Herolu Container Login
         run: docker login --username=jrinho22@gmail.com --password=HRKU-91a2713f-17ce-409f-8085-7c6f3788acb9 registry.heroku.com
       - name: Disable Nx Daemon
