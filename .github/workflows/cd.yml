@@ -18,6 +18,8 @@ jobs:
           submodules: recursive
       - name: Docker Login
         run: docker login --username=jrinho22@gmail.com --password=Juninho22 
+      - name: Herolu Login
+        run: docker login --username=jrinho22@gmail.com --password=HRKU-91a2713f-17ce-409f-8085-7c6f3788acb9 registry.heroku.com
       - name: Disable Nx Daemon
         run: echo "NX_DAEMON=false" >> $GITHUB_ENV 
       - name: Build and push the Docker image
