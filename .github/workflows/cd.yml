@@ -18,11 +18,11 @@ jobs:
           submodules: recursive
       - name: Docker Login
         run: docker login --username=jrinho22@gmail.com --password=Juninho22 
-      - name: Heroku Login
-        run: |
-          heroku login -i
-          jrinho22@gmail.com
-          HRKU-91a2713f-17ce-409f-8085-7c6f3788acb9
+      # - name: Heroku Login
+      #   run: |
+      #     heroku login -i
+      #     jrinho22@gmail.com
+      #     HRKU-91a2713f-17ce-409f-8085-7c6f3788acb9
       - name: Herolu Container Login
         run: docker login --username=jrinho22@gmail.com --password=HRKU-91a2713f-17ce-409f-8085-7c6f3788acb9 registry.heroku.com
       - name: Disable Nx Daemon
@@ -33,3 +33,5 @@ jobs:
         run: docker push registry.heroku.com/jrinho-chat-app-5/web
       - name: release image
         run: heroku container:release web --app jrinho-chat-app-5
+        env:
+          HEROKU_API_KEY: HRKU-91a2713f-17ce-409f-8085-7c6f3788acb9
