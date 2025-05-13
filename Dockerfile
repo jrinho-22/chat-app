@@ -6,7 +6,7 @@ COPY novo2/. /usr/src/app
 
 RUN npm install
 RUN npx nx build angular-app
-RUN npx nx build express-app
+RUN NX_DAEMON=false npx nx build express-app --skip-nx-cache
 
 FROM nginx:1.25-alpine
 

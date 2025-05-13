@@ -17,7 +17,9 @@ jobs:
           fetch-depth: 0
           submodules: recursive
       - name: Docker Login
-        run: docker login --username=jrinho22@gmail.com --password=Juninho22  
+        run: docker login --username=jrinho22@gmail.com --password=Juninho22 
+      - name: Disable Nx Daemon
+        run: echo "NX_DAEMON=false" >> $GITHUB_ENV 
       - name: Build and push the Docker image
         run: |
           docker build -t chat-app . --tag registry.heroku.com/jrinho-chat-app-5/web
