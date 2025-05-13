@@ -20,3 +20,17 @@ export const loginUser = async(userName: string, avatar: string) => {
     return saveUser({name: userName, avatar: avatar})
 }
 
+export const checkRoomType = async(senderId: mongooseId, receiverId: mongooseId) => {
+    let roomType = ""
+    const receiverUser = await UserModel.findById(receiverId)
+    if (receiverUser) {
+        const conatctfound = receiverUser.contacts.find(id => String(id) == String(senderId))
+        if (conatctfound) {
+            roomType = "contact"
+        } else {
+            roomType = "room"
+        }
+    } 
+    return roomType
+}
+

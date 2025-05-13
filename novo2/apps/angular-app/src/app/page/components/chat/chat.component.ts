@@ -21,7 +21,6 @@ export class ChatComponent {
   protected chatHistory: IMessages<string>[] = []
   protected messageInput: string = ""
   protected currentRoom: string | undefined
-  protected roomType: "room" | "contact" | undefined
   protected roomMembers: string[] = []
   protected avatar: string = ''
   @ViewChild('scrollContainer') scrollContainer: ElementRef | undefined;
@@ -29,10 +28,6 @@ export class ChatComponent {
   constructor(private ws: WebsocketService, private chatModel: ChatModel) {
     this.subscribeRoom()
   }
-
-  // ngAfterViewChecked() {
-  //   this.scrollToBottom();
-  // }
 
   scrollToBottom() {
     const container = this.scrollContainer?.nativeElement;
@@ -57,7 +52,6 @@ export class ChatComponent {
           this.getChatHistory(v._id);
           this.roomMembers = v.members
           this.avatar = v?.avatar!
-          this.roomType = v.type
       }
     })
     this.ws.listenMessages().subscribe(v => {
@@ -71,7 +65,7 @@ export class ChatComponent {
 
   sendHandler(event: ChatInputEvent) {
     this.scrollToBottom()
-    this.ws.sendMessage(event.messageValue, this.roomType!)
+    this.ws.sendMessage(event.messageValue)
   }
 
   getChatHistory(roomId: string) {

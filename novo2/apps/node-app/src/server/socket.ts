@@ -1,7 +1,7 @@
 import http from 'http';
 import { Server } from 'socket.io';
 import serverIntance from "./server"
-import { loginUser } from '../schemas/user/user.action';
+import { checkRoomType, loginUser } from '../schemas/user/user.action';
 import { IMessages, liveConnections, mongooseId } from '@novo2/types-lib';
 import { getUsersByRoomId } from '../schemas/room/room.action';
 import { saveMessage } from '../schemas/messages/message.action';
@@ -50,25 +50,20 @@ class Socket {
             socket.on("message-sent", async (messageDto: Omit<IMessages<string>, "_id">) => {
                 const messageSaved = await saveMessage(messageDto)
                 const users = await getUsersByRoomId(messageDto.roomId)
-                const receivedUser = users.filter(user => String(user) != messageDto.userId)
-                const notReadId = await saveNotReadMessage(messageDto.roomId, messageDto.userId, String(messageSaved._id), String(receivedUser[0]))
+                const [senderId, receivedUser] = String(users[0]) == messageDto.userId ?
+                users : [users[1], users[0]];
+                const roomType = await checkRoomType(senderId, receivedUser)
+                let msgId: mongooseId | undefined
+                if (roomType == "contact") {
+                    const notReadId = await saveNotReadMessage(messageDto.roomId, messageDto.userId, String(messageSaved._id), String(receivedUser))
+                    msgId = notReadId._id
+                }
                 users.forEach(userId => {
                     const userConnection = this.liveClients.find(client => client.user._id.toString() === userId.toString());
                     if (userConnection) {
-                        this._io.to(userConnection.socketId).emit("new-message", { ...messageDto, msgId: notReadId._id, roomType: "contact" });
+                        this._io.to(userConnection.socketId).emit("new-message", { ...messageDto, msgId: msgId, roomType: roomType });
                     }
                 });
-            })
-
-            socket.on("instant-message-sent", async (messageDto: Omit<IMessages<string>, "_id">) => {
-                await saveMessage(messageDto)
-                const users = await getUsersByRoomId(messageDto.roomId)
-                users.forEach(userId => {
-                    const userConnection = this.liveClients.find(client => client.user._id.toString() === userId.toString());
-                    if (userConnection) {
-                        this._io.to(userConnection.socketId).emit("new-message", { ...messageDto, roomType: "room" });
-                    }
-                })
             })
 
             socket.on('disconnect', () => {

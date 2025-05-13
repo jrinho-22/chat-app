@@ -52,7 +52,7 @@ export class WebsocketService {
     });
   }
 
-  sendMessage(messageContent: string, roomType: "room" | "contact") {
+  sendMessage(messageContent: string) {
     if (!messageContent || !this._user.value || !this._roomSubject.value?._id) return
     const messageObj: Omit<IMessages<string>, "_id"> = {
       userId: this._user.value._id,
@@ -60,11 +60,7 @@ export class WebsocketService {
       content: messageContent,
       created: new Date()
     }
-    if (roomType == "contact") {
-      this._ws.emit("message-sent", messageObj)
-    } else {
-      this._ws.emit("instant-message-sent", messageObj)
-    }
+    this._ws.emit("message-sent", messageObj)
   }
 
   addUser(name: string, avatar: string) {

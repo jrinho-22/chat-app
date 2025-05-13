@@ -16,6 +16,6 @@ export const getRoomByUsers = async (clients: string[] | mongooseId[]) => {
 }
 
 export const getUsersByRoomId = async(roomId: string) => {
-    const users = await RoomModel.findOne({ _id: roomId })
-    return users.users
+    const room = await RoomModel.findOne({ _id: roomId })
+    return room.users
 }
