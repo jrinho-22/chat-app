@@ -1,0 +1,6 @@
+<div class="chat-input">
+    <input (keydown.enter)="sendClickEmitter($event)" placeholder="Type a message" [(ngModel)]="messageInput" type="text">
+    <div>
+        <span (click)="sendClickEmitter($event)" [ngClass]="{ disable: !messageInput?.length || false }" class="mi-send"></span>
+    </div>
+</div>

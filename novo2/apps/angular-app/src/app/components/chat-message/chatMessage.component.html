@@ -1,0 +1,9 @@
+<div [ngClass]="self ? 'self' : undefined" class="msg-wrapper">
+    <div class="msg-container">
+        <span class="msg-container_message">{{msg}}</span>
+        <!-- <span class="msg-container_not-show">00:00</span> -->
+        <div class="msg-container_time">
+            <span>{{time}}</span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<ng-container *ngIf="chatApp; else login">
+    <div class="app-wrapper">
+        <app-side-menu> </app-side-menu>
+        <app-contact></app-contact>
+        <app-chat></app-chat>
+    </div>
+</ng-container>
+
+<ng-template #login>
+    <div class="login-container">
+        <div class="username-wrapper">
+            <span>Enter your UserName </span>
+            <input (blur)="blurEvent()" (keydown.enter)="clickHandler2()" [(ngModel)]="userName" type="text">
+        </div>
+        <div>
+            <span>{{getText()}}</span>
+            <div class="avatars-wrapper">
+                @for (item of avatars; track $index) {
+                <div [paint]="item == activeAvatar" class="item">
+                    <span [ngClass]="{disabled: !avatarEnabled}" (click)="setActiveAvatar(item)" [class]="item"></span>
+                </div>
+                }
+            </div>
+        </div>
+        <button class="button-49" (click)="clickHandler()">confirm</button>
+    </div>
+</ng-template>

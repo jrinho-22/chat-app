@@ -1,0 +1,45 @@
+.msg-wrapper
+  display: flex
+  flex-direction: column
+  margin: 10px 0
+  justify-content: center
+
+  &.self
+    align-items: flex-end
+    .msg-container
+      background-color: #d3edfd
+
+  &:not(.self)
+    align-items: flex-start
+    .msg-container
+      background-color: white
+
+
+  .msg-container
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px
+    width: max-content
+    border-radius: 12px
+    padding: 5px 0px 8px 12px
+    background-color: rgb(255 255 255 / 77%)
+    max-width: 80%
+    position: relative
+
+    &_not-show
+      font-size: 10px
+      visibility: hidden
+
+    &_message
+      padding-bottom: 5px
+      font-size: 14px
+      word-wrap: break-word
+
+    &_time
+      display: inline-flex
+      float: right
+      padding: 0 9px
+      margin-top: 7px
+      font-size: 11px
+      color: #867676
+
+
+    

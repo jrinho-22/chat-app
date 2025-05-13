@@ -1,0 +1,1 @@
+export const wsServerUrl = "http://localhost:3000"

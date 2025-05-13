@@ -1,0 +1,10 @@
+<mat-menu #menu="matMenu">
+    <ng-template matMenuContent let-name="name">
+        <button (click)="emitClick()" mat-menu-item>
+            <div class="button-content">
+                <span class="mi-add menu-icon"></span>
+                <span>Add to contacts</span>
+            </div>
+        </button>
+    </ng-template>
+</mat-menu>

@@ -1,0 +1,28 @@
+*
+  box-sizing: border-box !important
+  margin: 0
+
+h1, span, input, p
+    font-family: Averta !important
+
+*
+    scrollbar-width: thin
+    scrollbar-color: #191a0b2c transparent
+
+.wave-container
+  // position: absolute
+  width: 100%
+
+.wave 
+  width: 100%
+  height: 50px
+  border-radius: 10px
+  margin-bottom: 20px
+  animation: wave 3s infinite ease-in-out
+
+@keyframes wave 
+  0%, 50% 
+    background-color: rgb(240 240 240)
+  
+  30%, 90%
+    background-color: rgb(220 220 220)

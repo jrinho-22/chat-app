@@ -1,0 +1,79 @@
+.contact-item
+    // margin-top: 16px
+    padding: 15px 0
+    overflow-x: hidden
+    /* border-radius: 30px; */
+    /* height: 40px; */
+    /* background-color: antiquewhite; */
+    background-clip: content-box
+    cursor: pointer
+    display: flex
+    align-items: center
+    // border-top: 1px solid var(--divider-color)
+    position: relative
+    border-bottom: 1px solid var(--divider-color)
+    // &:last-child
+    // border-bottom: 1px solid var(--divider-color)
+
+    .avatar
+        flex-grow: 1
+        // padding-left: 5px
+
+    .contact-wrapper
+        display: flex
+        flex-direction: column
+        flex-grow: 10
+
+        .message-peak
+            font-size: 12px
+            margin-top: 2px
+            max-width: 70%
+            overflow: hidden
+            color: #00769870
+
+    .arrow-container
+        height: 100%
+        display: flex
+        align-items: center
+        width: 35px
+        justify-content: center
+
+        .arrow-options
+            all: unset
+            padding: 3px
+            transform: rotate(-134deg)
+            border-top: 2px solid #6e6c6c
+            border-left: 2px solid #6e6c6c
+
+    .contact-notification
+        position: absolute
+        right: 3%
+        display: flex
+        justify-content: center
+        align-items: center
+        min-width: 32px
+        max-width: 32px
+        min-height: 32px
+        max-height: 32px
+        border-radius: 100px
+        background-color: #d3edfd
+        flex-grow: 1
+        font-size: 15px
+
+        &.hide
+            right: -25%
+
+        &.fade
+            animation: animate 600ms ease-in-out
+            animation-fill-mode: forwards
+
+        span
+            font-size: 13px
+
+@keyframes animate
+    0%
+        right: 3%
+    65%
+        right: 6%
+    100%
+        right: -25%

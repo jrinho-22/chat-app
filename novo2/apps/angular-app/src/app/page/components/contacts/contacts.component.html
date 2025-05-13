@@ -1,0 +1,51 @@
+<!-- <span>Logged in as: {{user && user.name}}</span> -->
+<div class="contact-wrapper">
+    <div class="contact-wrapper_menu">
+        <div class="contact-wrapper_menu_header">
+            <h1 [ngStyle]="{'margin-left': '22px'}" class="title">Chats</h1>
+        </div>
+        <div class="contact-wrapper_menu_search">
+            <!-- <app-search-input /> -->
+        </div>
+    </div>
+    <div id="contact-element" class="contact-wrapper_contacts">
+        <div class="contact-group">
+            <span class="contact-type">My contatcs</span>
+            <div class="contact-group_item" id="contact-group-loader">
+                <ng-container *ngIf="obs | async as obs">
+                    @if (userContactsArray.length) {
+                    <ng-container *ngFor="let contact of userContactsArray; trackBy: trackByContactId">
+                        <app-single-contact roomtType="contact" [user]="contact" [clickHandler]="clickHandlerBind" />
+                    </ng-container>
+                    }
+                </ng-container>
+            </div>
+        </div>
+
+        <!-- <div class="divider"></div> -->
+        <div class="room-group">
+            <div [ngStyle]="{'margin-bottom': '20px'}">
+                <span class="contact-type">Room contatcs live</span>
+                <div class="online"></div>
+            </div>
+
+            <div id="room-group-loader" class="room-group-loader">
+                <ng-container *ngIf="obs2 | async as liveConnections">
+                    @if (roomontactsArray.length) {
+                    <ng-container *ngFor="let con of roomontactsArray; trackBy: trackByContactIdRoom">
+                        <app-single-contact-room roomtType="room" [user]="con" [clickHandler]="clickHandlerBind" />
+                    </ng-container>
+                    } @else {
+                    <div class="empty-room">
+                        <span>No live connection</span>
+                        <a [href]="currentUrl" target="_blank" rel="noopener noreferrer">Open new connection to
+                            populate</a>
+                    </div>
+                    }
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <app-menu #customMenu="customMenu"/> -->

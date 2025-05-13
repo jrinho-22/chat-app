@@ -1,0 +1,133 @@
+app-contact
+    width: 100%
+
+.menu-icon
+    vertical-align: -7px
+    font-size: 25px
+    margin-right: 10px
+
+.contact-wrapper
+    background-color: white
+    width: 100%
+    height: 100%
+    display: flex
+    flex-direction: column
+    border-right: 1px solid var(--divider-color)
+    // padding: 20px 0px 20px 20px
+
+    &_menu
+        height: 9%
+        padding: 20px 15px 0px 15px
+        display: flex
+        flex-direction: column
+        margin-bottom: 20px
+
+        &_header
+            display: flex
+            .title
+                font-size: 27px
+
+    &_contacts
+        display: flex
+        height: 87%
+        flex-direction: column
+        padding: 0 15px 0 15px
+
+        span.contact-type
+            height: max-content
+            margin-left: 20px
+            margin-bottom: 20px
+            font-size: 13px
+
+        .divider
+            height: 1%
+            margin-bottom: 10px
+            border-top: 1px solid var(--divider-color)
+
+        .room-group
+            display: flex
+            flex-direction: column
+            margin-top: 20px
+            height: 49%
+
+            .online
+                vertical-align: middle
+                display: inline-flex
+                width: 10px
+                margin-left: 10px
+                height: 10px
+                border-radius: 50%
+                background-color: #92f292
+
+            .room-item
+                padding-top: 10px
+
+
+        .contact-group
+            max-height: 50%
+            display: flex
+            flex-direction: column
+            height: 50%
+
+            &_item
+                overflow-y: auto
+
+        .room-group, .contact-group
+            padding: 0 22px
+            position: relative
+            padding-bottom: 10px
+
+            .room-group-loader
+                overflow-x: hidden
+                overflow-y: auto
+                height: 80%
+
+                .empty-room
+                    height: 100%
+                    padding: 30px
+
+                    span
+                        text-align: center
+                        display: block
+                    a
+                        all: unset
+                        padding-top: 10px
+                        text-decoration-line: underline
+                        text-align: center
+                        display: block
+                        cursor: pointer
+
+            .contact-group-loader
+                height: calc( 100% - 10px )
+                padding-top: 10px
+
+            // .contact-item
+            //     margin-top: 16px
+            //     border-radius: 30px
+            //     height: 40px
+            //     background-color: antiquewhite
+            //     background-clip: content-box
+            //     cursor: pointer
+            //     display: flex
+            //     align-items: center
+
+                // span.contact-name
+                //     margin: auto
+                //     font-size: 15px
+
+                .arrow-container
+                    height: 100%
+                    display: flex
+                    align-items: center
+                    width: 35px
+                    justify-content: center
+
+                    .arrow-options
+                        all: unset
+                        padding: 3px
+                        transform: rotate(-134deg)
+                        border-top: 2px solid #6e6c6c
+                        border-left: 2px solid #6e6c6c
+
+                label
+                    cursor: pointer

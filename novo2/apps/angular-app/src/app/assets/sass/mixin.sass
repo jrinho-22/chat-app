@@ -1,0 +1,51 @@
+@mixin paintAnimation()
+    .item_animate-1,
+    .item_animate-2,
+    .item_animate-3
+        position: absolute
+        left: 0
+        bottom: 0
+        transform: rotate(45deg)
+        width: 11px
+        background-color: #ffff0066
+        transform-origin: bottom
+    .item_animate-1
+        translate: -10px -16px
+        height: 0px
+        animation: animate1 1s ease
+        animation-fill-mode: forwards
+    .item_animate-2
+        transform: rotate(225deg)
+        translate: 25px -38px
+        height: 0px
+        animation: animate2 1s ease
+        animation-fill-mode: forwards
+    .item_animate-3
+        translate: 8px -4px
+        height: 0px
+        animation: animate3 1s ease
+        animation-fill-mode: forwards
+
+    @keyframes animate1
+        0%
+            height: 0
+        15%
+            height: 30px
+        100%
+            height: 30px
+
+    @keyframes animate2
+        15%
+            height: 0px
+        30%
+            height: 50px
+        100%
+            height: 50px
+
+    @keyframes animate3
+        30%
+            height: 0px
+        50%
+            height: 22px
+        100%
+            height: 22px

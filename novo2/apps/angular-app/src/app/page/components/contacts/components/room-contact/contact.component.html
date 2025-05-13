@@ -1,0 +1,30 @@
+<div (click)="clickHandler(roomtType, user.user)" class="contact-item">
+    <span class="avatar" [ngClass]="[user.user.avatar]"></span>
+    <div class="contact-wrapper">
+        <span class="contact-name">{{user.user.name}}</span>
+        <!-- @if (user.newMessage) {
+            @let unread = user.unreadmessages[user.unreadmessages.length - 1];
+            @if ($any(unread)?.message) {
+                <span class="message-peak">{{$any(unread).message.content}}</span>
+            } @else {
+                <span class="message-peak">{{$any(unread).content}}</span>
+            }
+        } -->
+    </div>
+    <!-- @if (user.newMessage) {
+        <div class="contacts-notification">
+            <span>messaeg</span>
+        </div>
+        } -->
+    <div [class.hide]="shouldHideInitially" [class.fade]="shouldFade" class="contact-notification">
+        <span>{{ previousUnreadCount }}</span>
+    </div>
+
+    @if (roomtType == "room") {
+    <div class="arrow-container">
+        <app-menu #customMenu="customMenu" [data]="user.user.name"></app-menu>
+        <button (click)="$event.stopPropagation()" [matMenuTriggerFor]="customMenu.menu" class="arrow-options">
+        </button>
+    </div>
+    }
+</div>
