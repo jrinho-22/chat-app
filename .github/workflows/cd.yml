@@ -24,7 +24,7 @@ jobs:
       #     jrinho22@gmail.com
       #     HRKU-91a2713f-17ce-409f-8085-7c6f3788acb9
       - name: Herolu Container Login
-        run: docker login --username=jrinho22@gmail.com --password=${{ secrets.heroku_api_key }} registry.heroku.com
+        run: docker login --username=jrinho22@gmail.com --password=${{ secrets.HEROKU_API_KEY }} registry.heroku.com
       - name: Disable Nx Daemon
         run: echo "NX_DAEMON=false" >> $GITHUB_ENV 
       - name: Build Docker image
@@ -34,4 +34,4 @@ jobs:
       - name: release image
         run: heroku container:release web --app jrinho-chat-app-5
         env:
-          HEROKU_API_KEY: ${{ secrets.heroku_api_key }}
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
